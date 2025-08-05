@@ -3,12 +3,14 @@ const app = express()
 const PORT = process.env.PORT
 const movieRouter = require('./routes/moviesRouters')
 const cors = require('cors')
+const notFound = require('./middleware/notFound')
+const serverError = require('./middleware/serverError')
 
 
 
 app.use(cors())
 
-
+app.use(express.static('public'))
 
 
 
@@ -22,7 +24,11 @@ app.get('/', (req, res) => {
 })
 
 
-app.use('/api/movies/', movieRouter)
+app.use('/api/movies', movieRouter)
+
+
+app.use(serverError)
+app.use(notFound)
 
 
 
