@@ -6,7 +6,7 @@ const cors = require('cors')
 const notFound = require('./middleware/notFound')
 const serverError = require('./middleware/serverError')
 
-
+app.use(express.json())
 
 app.use(cors())
 
